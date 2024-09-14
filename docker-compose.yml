@@ -1,0 +1,68 @@
+version: '3'
+services:
+  nginx:
+    container_name: "nginx"
+    build:
+      context: ./nginx
+    depends_on:
+      - php
+    ports:
+      - 80:80
+    volumes:
+      - ./:/src
+
+  php:
+    container_name: "php"
+    build:
+      context: ./php
+    depends_on:
+      - mysql
+    ports:
+      - "9000:9000"
+    volumes:
+      - ./laravel/:/var/www/html
+      - ./php/php.ini:/usr/local/etc/php/php.ini
+
+  mysql:
+    image: mysql:8.0
+    container_name: "mysql"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=laravel
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=password
+    ports:
+      - 3306:3306
+
+  redis:
+    image: redis:alpine
+    container_name: "redis"
+    ports:
+      - 16379:6379
+
+  wordpress:
+    image: wordpress:latest
+    container_name: wordpress
+    ports:
+      - "8000:80"
+    environment:
+      - WORDPRESS_DB_HOST=mysql
+      - WORDPRESS_DB_USER=user
+      - WORDPRESS_DB_PASSWORD=password
+      - WORDPRESS_DB_NAME=laravel
+    volumes:
+      - ./wordpress:/var/www/html
+    depends_on:
+      - mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    environment:
+      - PMA_HOST=mysql
+      - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - "8080:80"
+    depends_on:
+      - mysql
+    platform: linux/amd64

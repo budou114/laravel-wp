@@ -20,7 +20,6 @@ services:
     ports:
       - "9000:9000"
     volumes:
-      - ./laravel/:/var/www/html
       - ./php/php.ini:/usr/local/etc/php/php.ini
     networks:
       - docker-network
@@ -88,9 +87,4 @@ networks:
 
 volumes:
   mysql-data:
-    name: mysql-data
-    driver: local
-
   redis-data:
-    name: redis-data
-    driver: local

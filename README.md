@@ -37,3 +37,12 @@ DB_PASSWORD={「laravel-wp」リポジトリ直下にある「.env」の「DB_PA
 ## Laravelにアクセス
 #### `Failed to open stream: Permission denied`が表示される場合
 コマンドの実行`chmod -R 777 /var/www/html/storage`
+
+
+## デバッグの設定
+1. プラグインのインストール
+- VSCodeのExtensionから`PHP Debug`をインストール
+2. launch.json ファイルの作成
+- `実行とデバッグ`を押下し、`launch.json ファイルを作成します`を押下する
+3. launch.json ファイルの確認
+- `.vscode`ディレクトリ内にファイルが作成されていることを確認する

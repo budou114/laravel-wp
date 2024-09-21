@@ -46,3 +46,10 @@ DB_PASSWORD={「laravel-wp」リポジトリ直下にある「.env」の「DB_PA
 - `実行とデバッグ`を押下し、`launch.json ファイルを作成します`を押下する
 3. launch.json ファイルの確認
 - `.vscode`ディレクトリ内にファイルが作成されていることを確認する
+
+### その他拡張機能
+- Laravel Snippets
+- Laravel Blade Snippets
+- Laravel Blade Spacer
+- Laravel Artisan
+- Laravel Extra Intellisense
